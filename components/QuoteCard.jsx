@@ -25,8 +25,8 @@ const QuoteCard = ({bookmark = false}) => {
                 {bookmark ? bookmark.quote : <Loading />}
             </blockquote>
             <div className="flex justify-end">
-            <div className="flex items-center justify-between w-1/2 ">
-                <h6 className="mr-24">{bookmark.author}</h6>
+            <div className="flex items-center justify-between md:w-1/2 ">
+                <h6 className="md:mr-24">{bookmark.author}</h6>
                 <BookmarkIcon  className="h-4" fill="#fff" />
             </div>
             </div>
@@ -34,15 +34,15 @@ const QuoteCard = ({bookmark = false}) => {
         )
     } else {
         return (
-            <div className="bg-secondary-color p-2 md:p-12 rounded-xl">
+            <div className="bg-secondary-color p-3 md:p-12 rounded-xl">
                 <blockquote>
                     {quote ? quote : <Loading />}
                 </blockquote>
-                <div className="flex justify-end">
-                <div className="flex items-center justify-between w-1/2 ">
-                    <h6 className="mr-24">{author}</h6>
-                    <BookmarkIcon onClick={handleClick} className="h-4" fill={click ? "#fff" : "#000"} />
-                </div>
+                <div className="flex md:justify-end my-3">
+                    <div className="flex items-center justify-between w-full md:w-1/2 ">
+                        <h6 className="md:mr-24">{author}</h6>
+                        <BookmarkIcon onClick={handleClick} className="h-4" fill={click ? "#fff" : "#000"} />
+                    </div>
                 </div>
             </div>
           )
