@@ -9,15 +9,19 @@ export const bookmarksSlice = createSlice({
     name: "bookmarks",
     initialState,
     reducers: {
-     updateBookmarks: (state, action) => {
+     addBookmarks: (state, action) => {
         state.value = [
             ...state.value,
-            action.payload]
+            action.payload
+        ]
+     },
+     removeBookmarks: (state, action) =>{
+        state.value = state.value.filter(item => item._id !== action.payload._id)
      }
     }
 });
  
-export const { updateBookmarks } = bookmarksSlice.actions;
+export const { addBookmarks, removeBookmarks } = bookmarksSlice.actions;
 
 // export const selectQuote = (state) =>  state.quote.state;
 

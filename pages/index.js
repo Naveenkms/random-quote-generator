@@ -5,15 +5,20 @@ import QuoteCard from '@/components/QuoteCard'
 import DropDownBtn from '@/components/DropDownBtn'
 import RandomQuoteGtrBtn from '@/components/RandomQuoteGtrBtn'
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { updateQuotes } from '@/store/quoteSlice';
 import { updateTags } from '@/store/tagsSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addBookmarks, removeBookmarks } from '@/store/bookmarksSlice'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const dispatch = useDispatch();
+  const bookmarks = useSelector(state => state.bookmarks.value);
+  const [bookmarked, setBookmarked] = useState(false)
+ console.log("bookmarks>>",bookmarks)
+  
   useEffect(() => {
     const fetchQuote = async() => {
       try {
@@ -38,7 +43,24 @@ export default function Home() {
       }
     }
     fetchTags();
-  }, [dispatch])
+  }, [dispatch]);
+
+const toggleBookmark = (_id, quote, author) => {
+  const isBookmarked = bookmarks.find(item => item._id === _id);
+console.log("isBookmarked>>",isBookmarked)
+  if(isBookmarked) {
+    dispatch(removeBookmarks({_id}));
+    setBookmarked(false)
+  } else {
+    dispatch(addBookmarks({_id, quote, author}));
+    setBookmarked(true)
+  }
+}
+
+const handleBookmarked = () => {
+  setBookmarked(false);
+}
+
 
   return (
     <>
@@ -51,9 +73,9 @@ export default function Home() {
       <Header/>
       <main className='bg-primary-color h-screen text-white px-6'>
       <article className="flex flex-col justify-evenly h-full md:max-w-3xl mx-auto">
-        <QuoteCard />
-        <DropDownBtn />
-        <RandomQuoteGtrBtn />
+         <QuoteCard bookmarked={bookmarked} toggleBookmark={toggleBookmark} />
+         <DropDownBtn handleBookmarked={handleBookmarked} />
+         <RandomQuoteGtrBtn toggleBookmark={toggleBookmark} handleBookmarked={handleBookmarked} />
       </article> 
       </main>
     </>

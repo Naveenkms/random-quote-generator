@@ -1,13 +1,14 @@
 import { useDispatch } from "react-redux";
 import {  updateQuotes } from '@/store/quoteSlice';
 
-const RandomQuoteGtrBtn = () => {
+const RandomQuoteGtrBtn = ({toggleBookmark, handleBookmarked}) => {
     const dispatch = useDispatch();
     const handleClick = async() => {
         try{
             const response = await fetch("https://api.quotable.io/random");
             const data = await response.json();
-            dispatch(updateQuotes(data))
+            dispatch(updateQuotes(data));
+            handleBookmarked()
         } catch(error) {
             console.log(error)
         }
