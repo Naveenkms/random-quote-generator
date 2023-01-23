@@ -25,7 +25,7 @@ export default function Home() {
       }
     }
     fetchQuote();
-  },[])
+  },[dispatch])
 
   useEffect(() => {
     const fetchTags = async() =>{
@@ -38,7 +38,7 @@ export default function Home() {
       }
     }
     fetchTags();
-  }, [])
+  }, [dispatch])
 
   return (
     <>
@@ -49,8 +49,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <main className='bg-primary-color h-screen text-white'>
-      <article className="flex flex-col justify-evenly h-full max-w-3xl mx-auto">
+      <main className='bg-primary-color h-screen text-white px-6'>
+      <article className="flex flex-col justify-evenly h-full md:max-w-3xl mx-auto">
         <QuoteCard />
         <DropDownBtn />
         <RandomQuoteGtrBtn />

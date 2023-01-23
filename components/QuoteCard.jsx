@@ -1,6 +1,6 @@
 import { updateBookmarks } from '@/store/bookmarksSlice';
 import { BookmarkIcon } from '@heroicons/react/24/solid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from './Loading';
 
@@ -10,13 +10,17 @@ const QuoteCard = ({bookmark = false}) => {
     const dispatch = useDispatch();
     const [click, setClick] = useState(false);
 
+    useEffect(() => {
+        setClick(false)
+    },[quote, author, _id])
+
     const handleClick = () => {
         setClick(prev => !prev);
         dispatch(updateBookmarks({quote, author, _id}))
     }
     if(bookmark) {
         return(
-            <div className="bg-secondary-color p-12 rounded-xl my-4">
+            <div className="bg-secondary-color p-2 md:p-12 rounded-xl my-4">
             <blockquote>
                 {bookmark ? bookmark.quote : <Loading />}
             </blockquote>
@@ -30,7 +34,7 @@ const QuoteCard = ({bookmark = false}) => {
         )
     } else {
         return (
-            <div className="bg-secondary-color p-12 rounded-xl">
+            <div className="bg-secondary-color p-2 md:p-12 rounded-xl">
                 <blockquote>
                     {quote ? quote : <Loading />}
                 </blockquote>

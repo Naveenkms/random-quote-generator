@@ -6,7 +6,6 @@ import { useSelector } from "react-redux"
 
 const Bookmarks = () => {
     const bookmarks = useSelector((state) => state.bookmarks.value)
-    console.log("quote,quote",bookmarks)
   return (
     <>
     <Head>

@@ -14,7 +14,7 @@ const handleChange = async(e) => {
     }
 }
   return (
-<select name="tags" id="tags" onChange={handleChange} className="text-black rounded-xl w-1/4 mx-auto shadow-2xl p-2 hover:cursor-pointer">
+<select name="tags" id="tags" onChange={handleChange} className="text-black rounded-xl w-1/2 md:w-1/4 mx-auto shadow-2xl p-2 hover:cursor-pointer">
     {tags.length != 0 &&  tags.map(tag => <option className="" key={tag._id} value={tag.name}>{tag.name}</option>)}
 </select>
 

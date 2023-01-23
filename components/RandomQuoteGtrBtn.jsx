@@ -13,7 +13,7 @@ const RandomQuoteGtrBtn = () => {
         }
     }
   return (
-    <button onClick={handleClick} className="bg-[#009c51] p-3 w-1/4 mx-auto rounded-xl">Next Quote</button>
+    <button onClick={handleClick} className="bg-[#009c51] p-3 w-1/2 md:w-1/4 mx-auto rounded-xl">Next Quote</button>
   )
 }
 

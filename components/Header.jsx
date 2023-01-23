@@ -4,7 +4,7 @@ const Header = () => {
   const router = useRouter();
   const pathname = router.pathname;
   return (
-    <nav className="sticky top-0 py-3 px-12 font-bold text-white text-xl bg-primary-color">
+    <nav className="sticky top-0 py-3 px-6 md:px-12 font-bold text-white text-xl bg-primary-color">
        <ul className="flex justify-between ">
         <li>
         <button type="button" onClick={() => router.push('/')} className={` ${pathname === "/" ? "font-extrabold" : "font-extralight"}`}>
